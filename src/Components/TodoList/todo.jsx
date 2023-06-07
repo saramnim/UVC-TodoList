@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Form,
@@ -12,7 +12,7 @@ import {
 
 export default function Todo() {
   const [todos, setTodos] = useState([]);
-  const [todoId, setTodoIds] = useState(0);
+  const [todoId, setTodoId] = useState(0);
   const [todoDone, setTodoDone] = useState(false);
 
   const handleDelete = (deleteId) => {
@@ -34,7 +34,20 @@ export default function Todo() {
       })
     );
   };
+  useEffect(() => {
+    const defaultTodo = JSON.parse(localStorage.getItem("todo"));
 
+    if (!defaultTodo) return;
+
+    setTodos(defaultTodo);
+    if (defaultTodo.length !== 0) {
+      setTodoId(defaultTodo[defaultTodo.length - 1].todoId + 1);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todos));
+  }, [todos]);
   return (
     <Container>
       <Form
@@ -49,7 +62,7 @@ export default function Todo() {
               todoDone: false,
             },
           ]);
-          setTodoIds(todoId + 1);
+          setTodoId(todoId + 1);
         }}
       >
         <TextInput type="text" placeholder="할 일을 쓰세요." name="todoText" />
