@@ -96,5 +96,5 @@ export default function Todo() {
 
 // Create - add make
 // Read - get Show
-//
-//
+// update - change
+// delete - delete
