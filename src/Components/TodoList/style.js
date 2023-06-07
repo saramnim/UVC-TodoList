@@ -55,6 +55,7 @@ export const SubmitInput = styled.input`
   font-size: 1.2rem;
   font-family: "NeoDunggeunmoPro-Regular";
   cursor: pointer;
+
   &:hover {
     background-color: #5a75ff;
     color: black;
@@ -76,6 +77,7 @@ export const ListItem = styled.li`
   border-radius: 10px;
   background-color: gold;
   position: relative;
+  cursor: pointer;
 `;
 
 export const TodoText = styled.span`
@@ -83,6 +85,9 @@ export const TodoText = styled.span`
   width: 90%;
   font-size: 17.5px;
   line-height: 22px;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 export const TodoDelete = styled.button`
   width: 10%;
@@ -95,4 +100,9 @@ export const TodoDelete = styled.button`
 
   position: absolute;
   right: 0;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
