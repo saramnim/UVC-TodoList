@@ -1,11 +1,18 @@
 import styled, { keyframes } from "styled-components";
 
+export const Container = styled.div`
+  margin: 7% 0 3% 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const moving = keyframes`
   from{
     left: 0px;
   }
   to{
-    left: 150px; 
+    left: 145px; 
   }
 `;
 
@@ -20,6 +27,7 @@ export const Eye = styled.div`
   border: 5px solid black;
   border-radius: 50%;
   position: relative;
+  background-color: #fff;
 `;
 export const Ball = styled.div`
   width: 50px;

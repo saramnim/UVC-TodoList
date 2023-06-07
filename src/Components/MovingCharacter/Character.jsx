@@ -1,9 +1,9 @@
 import React from "react";
-import { Eyes, Eye, Ball } from "./style";
+import { Container, Eyes, Eye, Ball } from "./style";
 
 const ECharacter = () => {
   return (
-    <>
+    <Container>
       <Eyes>
         <Eye>
           <Ball />
@@ -12,7 +12,7 @@ const ECharacter = () => {
           <Ball />
         </Eye>
       </Eyes>
-    </>
+    </Container>
   );
 };
 

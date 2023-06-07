@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import {
+  Container,
+  Form,
+  TextInput,
+  SubmitInput,
+  UnorderdList,
+  ListItem,
+  TodoText,
+  TodoDelete,
+} from "./style";
 
 export default function Todo() {
   const [todos, setTodos] = useState([]);
@@ -6,11 +16,13 @@ export default function Todo() {
   const [todoDone, setTodoDone] = useState(false);
 
   const handleDelete = (deleteId) => {
-    setTodos(
-      todos.filter((item) => {
-        return item.todoId !== deleteId;
-      })
-    );
+    window.confirm("정말 삭제할까요?")
+      ? setTodos(
+          todos.filter((item) => {
+            return item.todoId !== deleteId;
+          })
+        )
+      : console.log(`${deleteId} 삭제 취소`);
   };
   // 내가 킁익한 todo만 todoDone의 상태를 바꾼다.
   const handleToggle = (toggleId) => {
@@ -24,8 +36,8 @@ export default function Todo() {
   };
 
   return (
-    <>
-      <form
+    <Container>
+      <Form
         onSubmit={(e) => {
           e.preventDefault();
           console.log(e.target.todoText.value);
@@ -40,27 +52,32 @@ export default function Todo() {
           setTodoIds(todoId + 1);
         }}
       >
-        <input type="text" placeholder="할 일을 쓰세요." name="todoText" />
-        <input type="submit" value="추가" />
-      </form>
-      <ul>
+        <TextInput type="text" placeholder="할 일을 쓰세요." name="todoText" />
+        <SubmitInput type="submit" value="추가" />
+      </Form>
+      <UnorderdList>
         {todos.map((item, index) => {
           return (
-            <li key={index}>
-              <span
+            <ListItem
+              key={index}
+              style={{ backgroundColor: item.todoDone ? "gray" : "gold" }}
+            >
+              <TodoText
                 style={{
                   textDecoration: item.todoDone ? "line-through" : "none",
                 }}
                 onClick={() => handleToggle(item.todoId)}
               >
-                {item.todoText}
-              </span>
-              <span onClick={() => handleDelete(item.todoId)}> X </span>
-            </li>
+                {item.todoDone ? `${item.todoText} 해결!` : `${item.todoText}`}
+              </TodoText>
+              <TodoDelete onClick={() => handleDelete(item.todoId)}>
+                X
+              </TodoDelete>
+            </ListItem>
           );
         })}
-      </ul>
-    </>
+      </UnorderdList>
+    </Container>
   );
 }
 
